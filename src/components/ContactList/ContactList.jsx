@@ -15,7 +15,7 @@ export const ContactList = () => {
   const visibleContacts = useSelector(selectVisibleContacts);
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
-  const [contactToDeleteId, setContactToDeleteId] = useState(null);
+  const [_, setContactToDeleteId] = useState(null);
 
   useEffect(() => {
     dispatch(fetchContacts());
