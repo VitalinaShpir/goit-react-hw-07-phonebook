@@ -15,7 +15,7 @@ export const ContactList = () => {
   const visibleContacts = useSelector(selectVisibleContacts);
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
-  const [_, setContactToDeleteId] = useState(null);
+  const [contactToDeleteId, setContactToDeleteId] = useState(null);
 
   useEffect(() => {
     dispatch(fetchContacts());
@@ -47,6 +47,7 @@ export const ContactList = () => {
                   setContactToDeleteId(null);
                 });
               }}
+              disabled={isLoading && contactToDeleteId === id}
             >
               <RiDeleteBinLine />
             </button>
