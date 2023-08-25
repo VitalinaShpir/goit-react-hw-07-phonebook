@@ -31,7 +31,9 @@
 
 .addBtn {
   width: 50%;
+  height: 50px;
   padding: 5px 20px;
+  align-items: center;
   margin: 0 auto;
   font-size: 22px;
   font-weight: 600;

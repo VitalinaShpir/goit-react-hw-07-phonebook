@@ -2,17 +2,20 @@ import { nanoid } from 'nanoid';
 import { useState } from 'react';
 import css from './ContactForm.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/contactsSlice';
-import { getContacts } from 'redux/selectors';
+import { addContact } from 'redux/operations';
+// import { getContacts } from 'redux/selectors';
+import { selectContacts, selectIsLoading } from 'redux/selectors';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Loader } from 'components/Loader/Loader';
 
 export const ContactForm = () => {
   const [contactName, setContactName] = useState('');
   const [number, setNumber] = useState('');
 
   const dispatch = useDispatch();
-  const contacts = useSelector(getContacts);
+  const contacts = useSelector(selectContacts);
+  const isLoading = useSelector(selectIsLoading)
 
   const handleSubmitContact = e => {
     e.preventDefault();
@@ -90,8 +93,10 @@ export const ContactForm = () => {
           />
         </label>{' '}
       </div>
-      <button className={css.addBtn} type="submit">
-        Add contact
+      <button type="submit" className={css.addBtn} disabled={isLoading}>
+      {isLoading ?  <Loader/> : 'Add contact'}
+          {/* {isLoading && <Loader />}
+        Add contact */}
       </button>
     </form>
   );
